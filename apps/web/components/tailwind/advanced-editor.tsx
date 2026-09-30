@@ -55,7 +55,7 @@ const TailwindAdvancedEditor = () => {
 
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
-    setCharsCount(editor.storage.characterCount.words());
+    setCharsCount(editor.storage.characterCount.characters());
     window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
     window.localStorage.setItem("novel-content", JSON.stringify(json));
     window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
@@ -73,8 +73,8 @@ const TailwindAdvancedEditor = () => {
   return (
     <div className="relative w-full max-w-screen-lg">
       <div className="flex absolute right-5 top-5 z-10 mb-5 gap-2">
-        <div className="rounded-lg bg-accent px-2 py-1 text-sm text-muted-foreground">{saveStatus}</div>
-        <div className={charsCount ? "rounded-lg bg-accent px-2 py-1 text-sm text-muted-foreground" : "hidden"}>
+        <div className="rounded-lg bg-accent px-2 py-1 text-sm tabular-nums text-muted-foreground">{saveStatus}</div>
+        <div className={charsCount ? "rounded-lg bg-accent px-2 py-1 text-sm tabular-nums text-muted-foreground" : "hidden"}>
           {charsCount} Words
         </div>
       </div>
